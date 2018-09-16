@@ -11,8 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+//buat regis
+Route::get('/daftar', 'ControllerRegister@index')->name('daftar');
+Route::post('/daftarSimpan', 'ControllerRegister@daftarSimpan')->name('daftarSimpan');
+
+Route::get('/', 'ControllerLogin@index')->name('login');
 
 Route::get('/akang', 'ControllerHome@Index_get');
+Route::get('/toko', 'ControllerToko@index');
+
