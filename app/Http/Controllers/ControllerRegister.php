@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Validator;
+use DB;
+use Hash;
+use App\Register_M;
 
 class ControllerRegister extends Controller
 {
@@ -19,26 +22,47 @@ class ControllerRegister extends Controller
 
     public function daftarSimpan(Request $request)
     {
-        $this->validate($request,[
-            'username' => 'required',
-            'password' => 'required|min:4',
-            'rePassword' => 'required|min:4'
+        $username = $request->input('username');
+        $password = $request->input('password');
+        $rePassword = $request->input('rePassword');
+
+        $validator = Validator::make($request->all(), [
+            'username'      => 'required|max:255',
+            'password'      => 'required|min:6',
+            'rePassword'    => 'required|min:6',
         ]);
-        
-        $Repass = $request->input("rePassword");
-        $pass = $request->input("password");
 
-        if ($pass != $Repass)
-        {
-            $validator->errors()->add("rePassword", "Password Not Match");
-            return back()->withErrors($validator);
+        $hashPass = Hash::make($password);
 
-        }else
-        {
-            return $request->input("username");
-        }
+        if ($validator->fails()) {    
+            return response()->json(['status'=>422,'message'=>$validator->messages()]);
+        }else{
+            if($password!=$rePassword){
+                return response()->json(['status'=>422,'message'=>'Password Not Match']);
+            }else{      
+                try{
+                    DB::beginTransaction();
 
-        
+                    DB::insert('insert into tbl_customer (nama, password,enabled) values (?, ?, ?)', [
+                        $username, 
+                        $hashPass,
+                        '1'
+                    ]);
+
+                    $result = DB::commit();
+
+                    if($result===FALSE){
+                        DB::rollBack();
+                        return response()->json(['status'=>500,'message'=>'Internal Server Error']);
+                    }else{
+                        return response()->json(['status'=>200, 'message'=>'Success Saved For '.$username]);
+                    }
+                }catch(\Exception $e){
+                    return ['status'=>500, 'message'=>$e->getMessage()];
+                }       
+            }
+        }        
     }
     
 }
+

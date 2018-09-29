@@ -32,6 +32,8 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        //BUAT NGIRIM REPORT ERROR
+        $exception->getMessage();
         parent::report($exception);
     }
 
