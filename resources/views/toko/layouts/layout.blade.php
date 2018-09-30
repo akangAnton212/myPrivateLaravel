@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="{{ asset('assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.addons.css') }}">
+   <!-- Latest compiled and minified CSS -->
+   <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
   <!-- endinject -->
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
@@ -17,6 +19,8 @@
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
   <!-- endinject -->
   <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('css/datatables.bootstrap.css') }}">
   @yield('scriptcss')
 </head>
 
@@ -146,7 +150,7 @@
           </li>
           <li class="nav-item dropdown d-none d-xl-inline-block">
             <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-              <span class="profile-text">Hello, Richard V.Welsh !</span>
+              <span class="profile-text">Hello, {{Session::get('nama')}}</span>
               <img class="img-xs rounded-circle" src="{{asset ('assets/images/faces/face1.jpg') }}" alt="Profile image">
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
@@ -169,11 +173,14 @@
               <a class="dropdown-item">
                 Change Password
               </a>
-              <a class="dropdown-item">
-                Check Inbox
+              <a class="dropdown-item" href="{{ route('buatToko') }}">
+                Buat Toko
               </a>
-              <a class="dropdown-item">
+              <a class="dropdown-item" href="{{ route('signOut') }}">
                 Sign Out
+              </a>
+              <a class="dropdown-item" href="{{ route('pengaturanToko') }}">
+                Pengaturan
               </a>
             </div>
           </li>
@@ -195,16 +202,16 @@
                   <img src="{{asset ('assets/images/faces/face1.jpg') }}" alt="profile image">
                 </div>
                 <div class="text-wrapper">
-                  <p class="profile-name">Richard V.Welsh</p>
+                  <p class="profile-name">{{Session::get('nama')}}</p>
                   <div>
                     <small class="designation text-muted">Manager</small>
                     <span class="status-indicator online"></span>
                   </div>
                 </div>
               </div>
-              <button class="btn btn-success btn-block">New Project
-                <i class="mdi mdi-plus"></i>
-              </button>
+              <a href="{{ route('listBarang') }}" class="btn btn-success btn-block">Tambah Barang
+              <i class="mdi mdi-plus"></i>
+              </a>
             </div>
           </li>
           <li class="nav-item">
@@ -319,6 +326,11 @@
   <!-- Custom js for this page-->
   <script src="{{asset ('assets/js/dashboard.js') }}"></script>
   <!-- End custom js for this page-->
+  <!-- jQuery 3 -->
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <!-- DataTables -->
+<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
   @yield('scriptjs')
 </body>
 

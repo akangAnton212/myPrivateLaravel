@@ -24,3 +24,17 @@ Route::get('/', 'ControllerLogin@index')->name('login');
 Route::get('/akang', 'ControllerHome@Index_get');
 Route::get('/toko', 'ControllerToko@index');
 
+//login
+Route::post('/loginPost', 'ControllerLogin@postLogin')->name('postLogin');
+Route::get('/signOut', 'ControllerLogin@signOut')->name('signOut');
+
+//buat toko
+Route::get('/buatToko', 'ControllerToko@buatToko')->name('buatToko');
+Route::post('/buatTokoPost', 'ControllerToko@buatTokoPost')->name('buatToko');
+//pengaturan
+Route::get('/pengaturan', 'ControllerToko@pengaturanToko')->name('pengaturanToko');
+
+//tambah barang
+Route::get('/listBarang', 'ControllerBarang@index')->name('listBarang');
+Route::get('/lisBarang', 'ControllerBarang@listBarang')->name('lisBarang');
+
