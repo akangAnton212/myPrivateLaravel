@@ -11,7 +11,8 @@
   <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.addons.css') }}">
    <!-- Latest compiled and minified CSS -->
-   <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <!--<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">-->
   <!-- endinject -->
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
