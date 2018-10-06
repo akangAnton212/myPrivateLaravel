@@ -12,6 +12,7 @@
         </p>
         <form class="forms-sample" role="form" id="frm_buka_toko" method="POST" enctype="multipart/form-data">
             <input type="hidden" value="{{ csrf_token() }}" name="_token"/>
+            <input type="text" value="{{Session::get('id_cust')}}" name="session" id="session"/>
             <div class="form-group">
                 <label for="namaToko">Nama Toko</label>
                 <input type="text" class="form-control" id="namaToko" name="namaToko" placeholder="Nama Toko" required>
@@ -38,7 +39,7 @@
                 <label for="jamTutup">Jam Buka</label>
                 <input type="time" class="form-control" id="jamTutup" name="jamTutup" placeholder="Jam Tutup" required>
             </div>
-            <button type="submit" class="btn btn-success mr-2">Submit</button>
+            <button type="submit" class="btn btn-success mr-2" id="btnSave">Submit</button>
         <button class="btn btn-light">Cancel</button>
         </form>
     </div>
@@ -49,49 +50,112 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 
-  $(document).ready(function() {
-    $('#frm_buka_toko').on('submit', function (e) {
-        e.preventDefault();
-        $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $("input[name='_token']").val()
-        }
-        });
-        swal({
-            title: "Are you sure Save?",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-            })
-            .then((oke) => {
-            if (oke) {
-               
-                $.ajax({
-                    type: "POST",
-                    url: "{{ route ('buatToko') }}",
-                    data: new FormData(this),
-                    contentType:false,
-                    processData:false,
-                    success: function(response) {
-                        console.log(response);
-                        if (response.status == 200){
-                            swal(response.message, {
-                                icon: "success",
-                            });
-                        }else{
-                            swal(response.message, {
-                                icon: "error",
-                            });
-                        }
+    $(document).ready(function() {
+        $("#btnSave").click(function(e){
+            var sess = $("#session").val();
+            var form = $('#frm_buka_toko').serialize(); 
+            e.preventDefault();
+            $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $("input[name='_token']").val()
+            }
+            });
+            $.ajax({
+                type: "POST",
+                url: "{{ route('cekToko') }}",
+                data:{id:sess},
+                cache:false,
+                success: function(response) {
+                    console.log(response);
+                    if (response.status == 200){
+                        swal({
+                            title: "Are you sure Save?",
+                            icon: "warning",
+                            buttons: true,
+                            dangerMode: true,
+                            })
+                            .then((oke) => {
+                            if (oke) {           
+                                saveData();
+                            } else {
+                                swal("Cancel Save!");
+                            }
+                        });
+                    }else{
+                        swal(response.message, {
+                            icon: "error",
+                        });
                     }
-                });
-                return true;
-            } else {
-                swal("Your imaginary file is safe!");
+                }
+            });
+        });
+
+        // $('#frm_buka_toko').on('submit', function (e) {
+        //     e.preventDefault();
+        //     $.ajaxSetup({
+        //     headers: {
+        //         'X-CSRF-TOKEN': $("input[name='_token']").val()
+        //     }
+        //     });
+        //     swal({
+        //         title: "Are you sure Save?",
+        //         icon: "warning",
+        //         buttons: true,
+        //         dangerMode: true,
+        //         })
+        //         .then((oke) => {
+        //         if (oke) {
+                
+        //             $.ajax({
+        //                 type: "POST",
+        //                 url: "{{ route ('buatToko') }}",
+        //                 data: new FormData(this),
+        //                 contentType:false,
+        //                 processData:false,
+        //                 success: function(response) {
+        //                     console.log(response);
+        //                     if (response.status == 200){
+        //                         swal(response.message, {
+        //                             icon: "success",
+        //                         });
+        //                     }else{
+        //                         swal(response.message, {
+        //                             icon: "error",
+        //                         });
+        //                     }
+        //                 }
+        //             });
+        //             return true;
+        //         } else {
+        //             swal("Cancel Save!");
+        //         }
+        //     });
+        // });
+    });
+
+    function saveData(){
+
+        $.ajax({
+            type: "POST",
+            url: "{{ route ('buatToko') }}",
+            data : $("frm_buka_toko").serialize(),
+            contentType:false,
+            processData:false,
+            success: function(response) {
+                console.log(response);
+                if (response.status == 200){
+                    swal(response.message, {
+                        icon: "success",
+                    });
+                }else{
+                    swal(response.message, {
+                        icon: "error",
+                    });
+                }
             }
         });
-    });
-  });
+        return true;
+    }
 
   </script>
 

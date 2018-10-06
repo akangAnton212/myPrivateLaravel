@@ -29,7 +29,8 @@ Route::post('/loginPost', 'ControllerLogin@postLogin')->name('postLogin');
 Route::get('/signOut', 'ControllerLogin@signOut')->name('signOut');
 
 //buat toko
-Route::get('/buatToko', 'ControllerToko@buatToko')->name('buatToko');
+Route::get('/buatToko', 'ControllerToko@buatToko')->name('MyToko');
+Route::post('/cekToko', 'ControllerToko@cekToko')->name('cekToko');
 Route::post('/buatTokoPost', 'ControllerToko@buatTokoPost')->name('buatToko');
 //pengaturan
 Route::get('/pengaturan', 'ControllerToko@pengaturanToko')->name('pengaturanToko');

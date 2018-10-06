@@ -265,19 +265,19 @@
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
               <i class="menu-icon mdi mdi-restart"></i>
-              <span class="menu-title">User Pages</span>
+              <span class="menu-title">My Profile</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="auth">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                  <a class="nav-link" href="pages/samples/blank-page.html"> Blank Page </a>
+                  <a class="nav-link" href="{{ route('MyToko') }}"> Toko Ku </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="pages/samples/login.html"> Login </a>
+                  <a class="nav-link" href="{{ route('pengaturanToko') }}"> Pengaturan Toko </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="pages/samples/register.html"> Register </a>
+                  <a class="nav-link" href="{{ route('signOut') }}"> LogOut </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="pages/samples/error-404.html"> 404 </a>
