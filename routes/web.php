@@ -30,7 +30,7 @@ Route::get('/signOut', 'ControllerLogin@signOut')->name('signOut');
 
 //buat toko
 Route::get('/buatToko', 'ControllerToko@buatToko')->name('MyToko');
-Route::post('/cekToko', 'ControllerToko@cekToko')->name('cekToko');
+Route::get('/cekToko', 'ControllerToko@cekToko')->name('cekToko');
 Route::post('/buatTokoPost', 'ControllerToko@buatTokoPost')->name('buatToko');
 //pengaturan
 Route::get('/pengaturan', 'ControllerToko@pengaturanToko')->name('pengaturanToko');
@@ -38,4 +38,8 @@ Route::get('/pengaturan', 'ControllerToko@pengaturanToko')->name('pengaturanToko
 //tambah barang
 Route::get('/listBarang', 'ControllerBarang@index')->name('listBarang');
 Route::get('/lisBarang', 'ControllerBarang@listBarang')->name('lisBarang');
+Route::post('/barangPost', 'ControllerBarang@tambahBarang')->name('barangPost');
+
+//buat list satuan
+Route::get('/listSatuan', 'ControllerBarang@satuan')->name('satuan');
 

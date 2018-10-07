@@ -23,4 +23,8 @@ class Toko_M extends Model
         'updated_at'
     ];
     protected $primaryKey = 'id_toko';
+
+    public function customer(){
+        return $this->belongsTo(Login_M::class,'id_cust','id_cust');
+    }
 }

@@ -10,8 +10,11 @@
   <link rel="stylesheet" href="{{ asset('assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.addons.css') }}">
+ 
    <!-- Latest compiled and minified CSS -->
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <link rel="stylesheet" href=" https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   
    <!--<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">-->
   <!-- endinject -->
   <!-- plugin css for this page -->
@@ -21,7 +24,8 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
     <!-- DataTables -->
-    <link rel="stylesheet" href="{{ asset('css/datatables.bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/datatables.bootstrap.css') }}">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css" rel="stylesheet" />
   @yield('scriptcss')
 </head>
 
@@ -329,9 +333,12 @@
   <!-- End custom js for this page-->
   <!-- jQuery 3 -->
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
   <!-- DataTables -->
 <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
   @yield('scriptjs')
 </body>
 
