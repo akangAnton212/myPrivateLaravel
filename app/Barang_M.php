@@ -16,7 +16,6 @@ class Barang_M extends Model
         'harga', 
         'id_satuan',
         'description', 
-        'foto',
         'id_toko',
         'enabled',
         'created_at',
@@ -30,6 +29,10 @@ class Barang_M extends Model
 
     public function satuan(){
         return $this->belongsTo(Satuan_M::class,'id_satuan','id_satuan');
+    }
+
+    public function foto(){
+        return $this->hasMany(Barang_detail_M::class,'id_product','id_product');
     }
 
 }

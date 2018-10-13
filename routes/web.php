@@ -39,7 +39,13 @@ Route::get('/pengaturan', 'ControllerToko@pengaturanToko')->name('pengaturanToko
 Route::get('/listBarang', 'ControllerBarang@index')->name('listBarang');
 Route::get('/lisBarang', 'ControllerBarang@listBarang')->name('lisBarang');
 Route::post('/barangPost', 'ControllerBarang@tambahBarang')->name('barangPost');
+Route::post('/barangEdit', 'ControllerBarang@barangEdit')->name('barangEdit');
+Route::post('/barangDetail', 'ControllerBarang@barangDetail')->name('barangDetail');
+Route::post('/galery', 'ControllerBarang@galery')->name('galery');
+Route::post('/hapusFoto', 'ControllerBarang@hapusFoto')->name('hapusFoto');
+Route::post('/hapusBarang', 'ControllerBarang@hapusBarang')->name('hapusBarang'); 
 
 //buat list satuan
 Route::get('/listSatuan', 'ControllerBarang@satuan')->name('satuan');
+Route::get('/listSatuanEdit/{id}', 'ControllerBarang@satuanEdit');
 
